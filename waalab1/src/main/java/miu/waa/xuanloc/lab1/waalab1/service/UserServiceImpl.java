@@ -50,4 +50,20 @@ public class UserServiceImpl implements UserService {
     public List<UserEntity> getAllUsersExistPost() {
         return userRepository.findAllByPostsIsNotEmpty();
     }
+
+    @Override
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<UserEntity> getAllUsersMoreThanNPost(int minPost) {
+        return userRepository.findAllByPostsIsGreaterThan(minPost);
+    }
+
+    @Override
+    public List<UserEntity> getUsersWhosePostTitle(String title) {
+        return userRepository.findAllByPostsTitleIgnoreCase(title);
+    }
+
 }

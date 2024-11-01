@@ -4,6 +4,7 @@ import miu.waa.xuanloc.lab1.waalab1.entity.PostEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface  PostJpaRepository extends JpaRepository<PostEntity, Long> {
 
@@ -11,4 +12,7 @@ public interface  PostJpaRepository extends JpaRepository<PostEntity, Long> {
 
     List<PostEntity> findAllByAuthorContains(String authorContain);
 
+    List<PostEntity> findAllByTitleIgnoreCase(String title);
+
+    Optional<PostEntity> findByIdAndUserId(long postId, long userId);
 }

@@ -21,7 +21,13 @@ public class PostControllerImpl implements PostController {
     @Override
     public List<PostEntity> getAllPosts(
             @RequestParam(value = "author", required = false) String author,
-            @RequestParam(value = "authorContain", required = false) String authorContain) {
+            @RequestParam(value = "authorContain", required = false) String authorContain,
+            @RequestParam(value = "title", required = false) String title
+    ) {
+
+        if (title != null && !title.isEmpty()) {
+            return postService.getAllPostsMatchTitle(title);
+        }
 
         //only 'author' or 'authorContain' provide
         if (author != null && authorContain != null) {

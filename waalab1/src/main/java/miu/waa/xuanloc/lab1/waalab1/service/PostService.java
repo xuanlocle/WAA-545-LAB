@@ -21,4 +21,6 @@ public interface PostService {
     void deletePost(int id);
 
     void updatePost(int id, PostDto postDto);
+
+    List<PostEntity> getAllPostsMatchTitle(String title);
 }

@@ -17,4 +17,10 @@ public interface UserService {
     List<PostEntity> getAllPostsOfUser(long userId);
 
     List<UserEntity> getAllUsersExistPost();
+
+    void deleteUser(long id);
+
+    List<UserEntity> getAllUsersMoreThanNPost(int minPost);
+
+    List<UserEntity> getUsersWhosePostTitle(String title);
 }

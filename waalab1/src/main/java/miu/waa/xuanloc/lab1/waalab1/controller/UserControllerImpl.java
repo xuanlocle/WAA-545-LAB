@@ -19,7 +19,12 @@ public class UserControllerImpl implements UserController {
 
     @GetMapping
     @Override
-    public List<UserEntity> getAllUsers(@RequestParam(value = "isExistPost", required = false) boolean isExistPost) {
+    public List<UserEntity> getAllUsers(
+            @RequestParam(value = "isExistPost", required = false) boolean isExistPost,
+            @RequestParam(value = "minPost", required = false, defaultValue = "-1") int minPost) {
+        if (minPost != -1) {
+            return service.getAllUsersMoreThanNPost(minPost);
+        }
         if (isExistPost) {
             return service.getAllUsersExistPost();
         }
@@ -44,6 +49,19 @@ public class UserControllerImpl implements UserController {
     @Override
     public List<PostEntity> getListPostOfUser(@PathVariable("id") long id) {
         return service.getAllPostsOfUser(id);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("{id}")
+    @Override
+    public void deleteUser(@PathVariable("id") long id) {
+        service.deleteUser(id);
+    }
+
+    @GetMapping("/search")
+    @Override
+    public List<UserEntity> getUserByPostTitle(@RequestParam("title") String title) {
+        return service.getUsersWhosePostTitle(title);
     }
 
 }

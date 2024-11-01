@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import miu.waa.xuanloc.lab1.waalab1.entity.PostEntity;
 import miu.waa.xuanloc.lab1.waalab1.entity.dto.PostDto;
 import miu.waa.xuanloc.lab1.waalab1.repository.PostJpaRepository;
-import miu.waa.xuanloc.lab1.waalab1.repository.PostRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,5 +68,10 @@ public class PostServiceImpl implements PostService {
         }
         modelMapper.map(postDto, existingPost);
         postJpaRepository.save(existingPost);
+    }
+
+    @Override
+    public List<PostEntity> getAllPostsMatchTitle(String title) {
+        return postJpaRepository.findAllByTitleIgnoreCase(title);
     }
 }

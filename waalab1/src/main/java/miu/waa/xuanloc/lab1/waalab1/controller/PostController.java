@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface PostController {
 
-    List<PostEntity> getAllPosts(String author, String authorContain);
+    List<PostEntity> getAllPosts(String author, String authorContain, String title);
 
     PostEntity getPostById(int id);
 
