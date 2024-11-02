@@ -23,4 +23,6 @@ public interface UserService {
     List<UserEntity> getAllUsersMoreThanNPost(int minPost);
 
     List<UserEntity> getUsersWhosePostTitle(String title);
+
+    void testThrowException();
 }

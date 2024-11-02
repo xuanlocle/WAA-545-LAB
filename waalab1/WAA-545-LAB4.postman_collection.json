@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "2010dcbc-5042-4cf1-81ae-b3d9470aaa10",
-		"name": "WAA-545-LAB1",
+		"name": "WAA-545-LAB4",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30898453"
 	},
@@ -402,6 +402,33 @@
 			"response": []
 		},
 		{
+			"name": "getAllUsers by post title",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/users/search?title=title2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"search"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "title2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get comment of post id and user id",
 			"request": {
 				"method": "GET",
@@ -421,6 +448,27 @@
 						"1",
 						"comments",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test throw exception aspect",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/users/health",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"health"
 					]
 				}
 			},

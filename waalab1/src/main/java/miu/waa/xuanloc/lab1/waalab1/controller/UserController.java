@@ -21,4 +21,6 @@ public interface UserController {
     List<PostEntity> getListPostOfUser(@PathVariable("id") long id);
 
     List<UserEntity> getUserByPostTitle(String title);
+
+    void  getUserTestThrow();
 }

@@ -2,6 +2,7 @@ package miu.waa.xuanloc.lab1.waalab1.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import miu.waa.xuanloc.lab1.waalab1.aspect.annotation.ExecutionTime;
 import miu.waa.xuanloc.lab1.waalab1.entity.PostEntity;
 import miu.waa.xuanloc.lab1.waalab1.entity.UserEntity;
 import miu.waa.xuanloc.lab1.waalab1.entity.dto.UserDto;
@@ -10,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.EOFException;
 import java.util.List;
 
 @Service
@@ -26,6 +28,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    @ExecutionTime
     @Override
     public UserEntity getUserById(long id) {
         return userRepository.findById(id).orElse(null);
@@ -64,6 +67,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserEntity> getUsersWhosePostTitle(String title) {
         return userRepository.findAllByPostsTitleIgnoreCase(title);
+    }
+
+    @Override
+    public void testThrowException() {
+        throw new RuntimeException("Test throw exception from service");
     }
 
 }

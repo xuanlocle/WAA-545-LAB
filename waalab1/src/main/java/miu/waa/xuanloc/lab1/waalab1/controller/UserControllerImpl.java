@@ -64,4 +64,10 @@ public class UserControllerImpl implements UserController {
         return service.getUsersWhosePostTitle(title);
     }
 
+    @GetMapping("/health")
+    @Override
+    public void getUserTestThrow() {
+        service.testThrowException();
+    }
+
 }
