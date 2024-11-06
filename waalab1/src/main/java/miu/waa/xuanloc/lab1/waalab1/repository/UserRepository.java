@@ -18,4 +18,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Query("SELECT u FROM users u INNER JOIN u.posts posts " +
             "WHERE UPPER(posts.title) = UPPER(:title)")
     List<UserEntity> findAllByPostsTitleIgnoreCase(String title);
+
+    UserEntity findByEmail(String email);
 }

@@ -21,10 +21,17 @@ public class UserEntity {
     private long id;
     private String name;
 
+    private String email;
+    private String password;
+
     @OneToMany(cascade = CascadeType.ALL)
     @Fetch(FetchMode.SELECT)
     @JsonManagedReference
     @JoinColumn(name = "user_id")
     private List<PostEntity> posts;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles")
+    private List<RoleEntity> roles;
 
 }

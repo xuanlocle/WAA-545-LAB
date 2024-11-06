@@ -2,8 +2,10 @@ package miu.waa.xuanloc.lab1.waalab1.service;
 
 import lombok.RequiredArgsConstructor;
 import miu.waa.xuanloc.lab1.waalab1.entity.PostEntity;
+import miu.waa.xuanloc.lab1.waalab1.entity.UserEntity;
 import miu.waa.xuanloc.lab1.waalab1.entity.dto.PostDto;
 import miu.waa.xuanloc.lab1.waalab1.repository.PostJpaRepository;
+import miu.waa.xuanloc.lab1.waalab1.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,12 @@ public class PostServiceImpl implements PostService {
 //    PostRepository postRepository;
 
     private final PostJpaRepository postJpaRepository;
+    private final AuthenticationService authenticationService;
 
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<PostEntity> getAllPosts() {
@@ -35,9 +40,13 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void createPost(PostDto postDto) {
+    public void createPost(PostDto postDto, String username) {
 //        postRepository.createPost(modelMapper.map(postDto, PostEntity.class));
-        postJpaRepository.save(modelMapper.map(postDto, PostEntity.class));
+        PostEntity entityToSave = modelMapper.map(postDto, PostEntity.class);
+        UserEntity user = userRepository.findByEmail(username);
+        entityToSave.setUser(user);
+        entityToSave.setAuthor(username);
+        postJpaRepository.save(entityToSave);
     }
 
     @Override

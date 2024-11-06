@@ -1,12 +1,18 @@
-INSERT INTO users (name)
-VALUES ('User1');
+INSERT INTO users (name, email, password)
+VALUES ('User1', 'xuanloc.le@miu.edu', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2') --123
+     , ('User2', 'test@miu.edu', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2')       --123
+     , ('User3', 'test2@miu.edu', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2'); --123
 
-INSERT INTO users (name)
-VALUES ('User2');
+INSERT INTO role (id, role)
+VALUES (1, 'ADMIN'),
+       (2, 'USER');
 
-INSERT INTO users (name)
-VALUES ('User3');
-
+INSERT INTO user_roles (roles_id, users_id)
+VALUES (1, 1);
+INSERT INTO user_roles (users_id, roles_id)
+VALUES (2, 1);
+INSERT INTO user_roles (users_id, roles_id)
+VALUES (3, 2);
 
 INSERT INTO posts (title, content, author, user_id)
 VALUES ('Title1', 'Content1', 'Author1', 1);

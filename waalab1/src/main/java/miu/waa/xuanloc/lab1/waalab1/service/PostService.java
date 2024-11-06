@@ -12,7 +12,7 @@ public interface PostService {
 
     PostEntity getPostById(int id);
 
-    void createPost(PostDto postDto);
+    void createPost(PostDto postDto, String username);
 
     List<PostEntity> getAllPostsByAuthor(String author);
 

@@ -18,7 +18,7 @@ public class ExceptionAspect {
     @Autowired
     private ExceptionRepository exceptionRepository;
 
-    @AfterThrowing(pointcut = "execution(* miu.waa.xuanloc.lab1.waalab1..*(..))", throwing = "exception")
+    @AfterThrowing(pointcut = "execution(* miu.waa.xuanloc.lab1.waalab1.*(..))", throwing = "exception")
     public void catchException(JoinPoint joinPoint, Throwable exception) {
         String methodName = joinPoint.getSignature().getName();
         String className = joinPoint.getSignature().getDeclaringTypeName();

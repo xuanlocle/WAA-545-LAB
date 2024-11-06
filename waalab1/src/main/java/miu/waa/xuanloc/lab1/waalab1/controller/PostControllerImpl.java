@@ -2,9 +2,11 @@ package miu.waa.xuanloc.lab1.waalab1.controller;
 
 import miu.waa.xuanloc.lab1.waalab1.entity.PostEntity;
 import miu.waa.xuanloc.lab1.waalab1.entity.dto.PostDto;
+import miu.waa.xuanloc.lab1.waalab1.service.AwesomeUserDetails;
 import miu.waa.xuanloc.lab1.waalab1.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +26,6 @@ public class PostControllerImpl implements PostController {
             @RequestParam(value = "authorContain", required = false) String authorContain,
             @RequestParam(value = "title", required = false) String title
     ) {
-
         if (title != null && !title.isEmpty()) {
             return postService.getAllPostsMatchTitle(title);
         }
@@ -55,7 +56,9 @@ public class PostControllerImpl implements PostController {
     @PostMapping("/posts")
     @Override
     public void createPost(@RequestBody PostDto postDto) {
-        postService.createPost(postDto);
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        AwesomeUserDetails user = (AwesomeUserDetails) authentication.getPrincipal();
+        postService.createPost(postDto, user.getUsername());
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
